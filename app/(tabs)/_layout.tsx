@@ -1,12 +1,10 @@
 import { Redirect, router, Tabs } from 'expo-router';
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { AuthProvider, useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/context/AuthContext';
+import { Feather } from '@expo/vector-icons';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
   const { currentUser } = useAuth();
   if (!currentUser) {
     return <Redirect href="/login" />;
@@ -34,19 +32,19 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "home" : "home-outline"}
-              color={"white"}
+              color={color}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="perfil"
+        name="profile"
         options={{
           title: "",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "people" : "people-outline"}
-              color={"white"}
+              color={color}
             />
           ),
         }}
@@ -58,8 +56,17 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "add" : "add"}
-              color={"white"}
+              color={color}
             />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "",
+          tabBarIcon: ({ color}) => (
+            <Feather name="settings" size={24} color={color} />
           ),
         }}
       />

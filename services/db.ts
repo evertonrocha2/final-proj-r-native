@@ -9,12 +9,6 @@ export const initializeDatabase = async (): Promise<SQLite.SQLiteDatabase> => {
         quantidade INTEGER
     );`);
 
-  await dbInstance.execAsync(`
-        CREATE TABLE IF NOT EXISTS compradasMes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT, 
-        quantidade INTEGER
-    );`);
-
   return dbInstance;
 };
 
@@ -27,14 +21,6 @@ export const inserirFraldas = async (
   ]);
 };
 
-export const inserirFraldasMes = async (
-  db: SQLite.SQLiteDatabase,
-  novaQuantidade: number
-) => {
-  await db.runAsync("INSERT INTO compradasMes (quantidade) VALUES (?);", [
-    novaQuantidade,
-  ]);
-};
 
 export const reduzirFraldas = async (
   db: SQLite.SQLiteDatabase,
@@ -54,35 +40,15 @@ export const reduzirFraldas = async (
   }
 };
 
-export const reduzirFraldasMes = async (
-  db: SQLite.SQLiteDatabase,
-  novaQuantidade: number
-) => {
-  const result = await db.getFirstAsync(
-    "SELECT quantidade FROM compradasMes LIMIT 1"
-  );
-  if (result) {
-    await db.runAsync("UPDATE compradasMes SET quantidade = ? ", [
-      novaQuantidade,
-    ]);
-  } else {
-    await db.runAsync("INSERT INTO compradasMes (quantidade) VALUES (?);", [
-      novaQuantidade,
-    ]);
-  }
-};
 
 export const buscarEstoque = async (db: SQLite.SQLiteDatabase) => {
   const result = await db.getFirstAsync(
     "SELECT * FROM estoqueFraldas ORDER BY id DESC LIMIT 1;"
   );
-  const result2 = await db.getFirstAsync(
-    "SELECT * FROM compradasMes ORDER BY id DESC LIMIT 1;"
-  );
+  
   //@ts-ignore
   const quantidadeFraldas = result?.quantidade || 0;
   //@ts-ignore
-  const compradasMes = result2?.quantidade || 0;
 
-  return { quantidadeFraldas, compradasMes };
+  return { quantidadeFraldas, };
 };

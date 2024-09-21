@@ -1,7 +1,8 @@
-import { TextInput as TextInputPaper } from "react-native-paper";
-
+import { TextInput as TextInputPaper, useTheme } from "react-native-paper";
 const TextInput = (props: any) => {
-  return <TextInputPaper {...props} />;
+const colors = useTheme();
+
+  return <TextInputPaper textColor={colors.colors.onPrimary} {...props} />;
 };
 
 export default TextInput;
