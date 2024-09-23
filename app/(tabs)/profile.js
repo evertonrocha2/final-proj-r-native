@@ -17,7 +17,6 @@ const Profile = () => {
   const [data, setData] = useState({});
   const [image, setImage] = useState(null);
   const [offlineChanges, setOfflineChanges] = useState(null);
-  const colors = useTheme();
 
   const getUser = async () => {
     const currentUser = auth.currentUser; 

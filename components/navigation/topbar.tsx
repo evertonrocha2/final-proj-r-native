@@ -3,10 +3,14 @@ import { useState } from "react";
 import { router } from "expo-router";
 import AppBar from "../Appbar";
 import Menu from "./menu";
+import { useAuth } from "@/context/AuthContext";
+import { useTheme } from "react-native-paper";
 
 const TopBar = (props: any) => {
     const [visible, setVisible] = useState(false);
     const navigation = useNavigation();
+    const { logout } = useAuth();
+    const colors = useTheme();
 
     return (
         <>
@@ -39,7 +43,7 @@ const TopBar = (props: any) => {
                             title: "Logout",
                             icon: "logout",
                             onPress: () => {
-                                console.log("Logout");
+                                logout()
                             },
                         },
                     ]}

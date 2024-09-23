@@ -9,7 +9,7 @@ import { Text, View } from "react-native";
 import { useTheme } from "react-native-paper";
 
 const RecuperarSenha = () => {
-    const [emailRecuperacao, setEmailRecuperacao] = useState<string>("");
+    const [emailRecuperacao, setEmailRecuperacao] = useState("");
 
     const handleForgotPassword = () => {
         sendPasswordResetEmail(auth, emailRecuperacao);
@@ -30,7 +30,7 @@ const RecuperarSenha = () => {
                         style={{ backgroundColor: colors.colors.background, borderRadius: 0 }}
                         placeholder="Digite seu e-mail"
                         value={emailRecuperacao}
-                        onChangeText={(e: string) => setEmailRecuperacao(e)}
+                        onChangeText={(e) => setEmailRecuperacao(e)}
                     />
 
                     <Button

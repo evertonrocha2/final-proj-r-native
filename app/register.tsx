@@ -8,11 +8,11 @@ import { Button, useTheme } from "react-native-paper";
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
-  const { login } = useAuth()
+  const {register} = useAuth()
   const colors = useTheme();
 
   const handleSubmit = () => {
-    login(email, senha);
+    register(email, senha);
     router.replace("/(tabs)");
   };
   
@@ -21,7 +21,7 @@ const Login = () => {
 
       <View style={{ padding: 30, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <Text style={{ fontSize: 40, letterSpacing: -2, textAlign: 'center' }}>Bem vinda,</Text>
-        <Text style={{ fontSize: 20, letterSpacing: -1, textAlign: 'center', fontWeight: '600', marginBottom: 40 }}>Entre para acessar o Sistema!</Text>
+        <Text style={{ fontSize: 20, letterSpacing: -1, textAlign: 'center', fontWeight: '600', marginBottom: 40 }}>Registre-se para acessar o Sistema!</Text>
         <View style={{ display: 'flex', flexDirection: 'column', gap: 30 }}>
           <View style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <Text style={{ fontWeight: '600', letterSpacing: -1 }}>Digite o seu e-mail</Text>
@@ -36,16 +36,11 @@ const Login = () => {
           onPress={() => {
             handleSubmit();
           }
-          }>Entrar</Button>
+          }>Registrar</Button>
       </View>
       <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
         <Text onPress={() => router.push('/recuperar-senha')} style={{ color: 'blue', textDecorationLine: 'underline' }}>
           Esqueceu a senha?
-        </Text>
-      </View>
-      <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
-        <Text onPress={() => router.push('/register')} style={{ color: 'blue', textDecorationLine: 'underline' }}>
-          Não tem uma conta? Registre-se
         </Text>
       </View>
 

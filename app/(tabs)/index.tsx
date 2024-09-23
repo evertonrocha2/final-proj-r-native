@@ -13,8 +13,6 @@ import { auth } from '@/infra/firebase';
 import {
   initializeDatabase,
   inserirFraldas,
-  reduzirFraldas,
-  buscarEstoque
 } from "@/services/db";
 import { obterOuCriarEstoqueUsuario } from '@/infra/fraldas';
 export default function HomeScreen() {
@@ -81,10 +79,7 @@ export default function HomeScreen() {
         {
         (isConnected ? null : <Text style={{color: colors.colors.error}}>Você está sem conexão com a Internet!</Text>)}
         </View>
-      <Button onPress={() => router.push("/")} mode="contained" textColor='white' style={{ backgroundColor: '#000', borderRadius: 0, marginTop: 10, justifyContent: 'center', alignItems: 'center', paddingVertical: 10, paddingHorizontal: 30, width: 400, marginLeft: 'auto', marginRight: 'auto' }}>Settings</Button>
-      <View style={{ display: 'flex', alignItems: 'center', padding: 0, flexDirection: 'row', justifyContent: 'center', marginTop: 50, gap: 20, }}>
-        <Text style={{ fontSize: 20, fontWeight: 600, color: colors.colors.primary}}>Martha Silva</Text>
-      </View>
+   
       <View>
         <Text style={{ fontSize: 22, fontWeight: 400, textAlign: 'center', marginTop: 20, color: colors.colors.primary }}>Bem vinda ao Sistema,</Text>
         <Text style={{ fontSize: 27, fontWeight: 600, textAlign: 'center', color: colors.colors.primary }}>Gerencie o estoque de Fraldas!</Text>
@@ -106,10 +101,7 @@ export default function HomeScreen() {
         </Button>
 
       </View >
-      <Button onPress={() => {
-        logout();
-      }
-      }>Sair</Button>
+   
     </View >
   );
 }

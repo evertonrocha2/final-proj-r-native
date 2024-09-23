@@ -1,6 +1,7 @@
-import { Surface, Text } from "react-native-paper";
+import { Surface, Text, useTheme } from "react-native-paper";
 import { Menu as Mn } from "react-native-paper";
 const Menu = (props: any) => {
+    const colors = useTheme();
     return (
         <>
             {props.visible ? (
@@ -19,6 +20,8 @@ const Menu = (props: any) => {
                     {props.items.map((item: any, index: number) => {
                         return (
                             <Mn.Item
+                style={{ backgroundColor: colors.colors.primary }}
+
                                 leadingIcon={item.icon}
                                 key={index}
                                 title={item.title}
